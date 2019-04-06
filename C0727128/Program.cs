@@ -20,6 +20,7 @@ namespace Assignment
             p.ReadTextFiles();          
             p.WordCounter();
             p.Wordfinder();
+            p.Wordskipper();
             Console.ReadLine();
         }
 
@@ -121,8 +122,36 @@ namespace Assignment
             }
             Console.WriteLine("\n This file contains " + w );
         }
+        public void Wordskipper()
+        {
+            int w = 0;
+            int x = 0;
+            int y = 0;
+            foreach (var line in File.ReadAllLines("Beowulf.txt"))
+            {
+                if (line.Contains("fare"))
+                {
+                    w++;
+                }
+
+            }
+            foreach (var line in File.ReadAllLines("Beowulf.txt"))
+            {
+                if (line.Contains("war") && line.Contains("fare"))
+                {
+                    x++;
+                }
+
+            }
+            y = w - x;
+            Console.WriteLine("\n This file contains "+y);
+        }
+
     }
 
-
 }
+    
+
+
+
 
