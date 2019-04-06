@@ -18,10 +18,14 @@ namespace Assignment
             Program p = new Program();
             p.Beowulf = new ArrayList();
             p.ReadTextFiles();
+          
+            p.WordCounter();
             Console.ReadLine();
         }
 
-        public void Run() { this.ReadTextFiles(); }
+        public void Run()
+
+        { this.ReadTextFiles(); }
 
         public void ReadTextFiles()
         {
@@ -30,19 +34,25 @@ namespace Assignment
             using (StreamReader file = new StreamReader("Beowulf.txt"))
             {
 
-                int counter = 0;                //section A
+                int counter = 0;
 
                 string ln;
+              
                 while ((ln = file.ReadLine()) != null)
                 {
                     Console.WriteLine(ln);
                     Beowulf.Add(ln);
+
                 }
                 file.Close();
+               Console.WriteLine($"File has {counter} lines.");
 
                 counter = File.ReadLines("Beowulf.txt").Count();
 
+
                 Console.WriteLine("\n This file contains " + counter + " lines");
+
+
             }
         }
 
@@ -61,6 +71,34 @@ namespace Assignment
             return countSpaces;
             
         }
+        
+        public void WordCounter()
+        {
 
+            StreamReader reader = new StreamReader("Beowulf.txt");
+            string script = reader.ReadToEnd();
+
+            var text = script.Trim();
+            int wordCount = 0, index = 0;
+
+            while (index < text.Length)
+            {
+               
+               while (index < text.Length && !char.IsWhiteSpace(text[index]))
+                    index++;
+
+                wordCount++;
+                
+               while (index < text.Length && char.IsWhiteSpace(text[index]))
+                    index++;
+            }
+
+            Console.WriteLine("\n This file contains " +wordCount + " lines");
+
+          
+        }
+
+       
     }
+
 }
