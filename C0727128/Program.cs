@@ -21,6 +21,7 @@ namespace Assignment
             p.WordCounter();
             p.Wordfinder();
             p.Wordskipper();
+            p.Letters();
             Console.ReadLine();
         }
 
@@ -146,10 +147,45 @@ namespace Assignment
             y = w - x;
             Console.WriteLine("\n This file contains "+y);
         }
+        public void Letters()
+        {
+
+
+            StreamReader reader = new StreamReader("Beowulf.txt");
+            string script = reader.ReadToEnd();
+
+           
+            int NoOfLetters = 0;
+            foreach (char letter in script)
+            {
+                NoOfLetters++;
+            }
+            Console.WriteLine("\n This file contains number of letters " +NoOfLetters);
+            var text = script.Trim();
+            int wordCount = 0, index = 0;
+
+            while (index < text.Length)
+            {
+
+                while (index < text.Length && !char.IsWhiteSpace(text[index]))
+                    index++;
+
+                wordCount++;
+
+
+                while (index < text.Length && char.IsWhiteSpace(text[index]))
+                    index++;
+            }
+
+         
+            float average = NoOfLetters / wordCount;
+            Console.WriteLine("\n This file contains average "+average);
+        }
 
     }
-
 }
+
+
     
 
 
